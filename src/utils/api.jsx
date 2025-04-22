@@ -1,5 +1,5 @@
 // src/utils/api.js
-const API_BASE_URL = "http://localhost:8080/api"; // Base URL for your API
+const API_BASE_URL = "https://freem3u.xyz/api"; // Base URL for your API
 
 // Function to get the access token (e.g., from localStorage)
 function getAccessToken() {

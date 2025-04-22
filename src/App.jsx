@@ -2,11 +2,12 @@ import React, {useState, useEffect} from "react";
 import {AuthProvider} from "./context/AuthContext";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import "./styles.css";
-import {ShortenPage, DevicePage, AuthPage, HistoryPage} from "./page";
+import {ShortenPage, DevicePage, AuthPage, HistoryPage, HomePage} from "./page";
 
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext";
 import {DeviceUrlPage} from "./page";
+import {AppDownloadPage} from "./page/app/App";
 
 function Layout({children}) {
     const {isLoggedIn, logout} = useContext(AuthContext);
@@ -15,7 +16,7 @@ function Layout({children}) {
         <div className="min-h-screen bg-gray-50 text-gray-800">
             <header className="bg-blue-900 text-white p-6 text-center">
                 <h1 className="text-3xl font-bold">vAppTV - FreeM3U</h1>
-                <p>Giải pháp chia sẻ link rút gọn và nội dung M3U8 tiện lợi</p>
+                <p>Giải pháp chia sẻ link rút gọn và nội dung M3U tiện lợi</p>
             </header>
             <nav className="bg-white shadow sticky top-0 z-10">
                 <ul className="flex justify-center flex-wrap space-x-4 p-3 text-sm">
@@ -32,6 +33,11 @@ function Layout({children}) {
                     <li>
                         <Link to="/device" className="text-blue-700 hover:underline">
                             Thiết bị
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/app" className="text-blue-700 hover:underline">
+                            Tải ứng dụng
                         </Link>
                     </li>
                     {isLoggedIn ? (
@@ -78,8 +84,9 @@ export default function App() {
                         <Route path="/shorten" element={<ShortenPage/>}/>
                         <Route path="/device" element={<DevicePage/>}/>
                         <Route path="/device/:deviceId" element={<DeviceUrlPage/>}/>
-                        <Route path="/history" element={<HistoryPage />} />
-                        <Route path="/" element={<h2 className="text-2xl font-bold">Welcome to vApp</h2>}/>
+                        <Route path="/history" element={<HistoryPage/>}/>
+                        <Route path="/app" element={<AppDownloadPage/>}/>
+                        <Route path="/" element={<HomePage/>}/>
                     </Routes>
                 </Layout>
             </Router>

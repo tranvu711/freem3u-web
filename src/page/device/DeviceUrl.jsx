@@ -7,7 +7,7 @@ import {AuthContext} from "../../context/AuthContext";
 
 
 export function DeviceUrlPage() {
-    const { isLoggedIn, logout } = useContext(AuthContext);
+    const {isLoggedIn, logout} = useContext(AuthContext);
     const {deviceId} = useParams();
     const [urls, setUrls] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -217,67 +217,70 @@ export function DeviceUrlPage() {
             {error && <p className="text-red-600">{error}</p>}
 
             <LoadingOverlay isLoading={loading}/>
-            <table className="table-fixed w-full border-collapse border border-gray-300" style={{width: "100%", marginTop: "20px"}}>
-                <thead className="bg-gray-100">
-                <tr>
-                    <th className="w-1/4 border border-gray-300 px-2 py-1 text-left">Tên</th>
-                    <th className="w-2/4 border border-gray-300 px-2 py-1 text-left">URL</th>
-                    <th className="w-1/8 border border-gray-300 px-2 py-1 text-center">Trạng thái</th>
-                    <th className="w-1/8 border border-gray-300 px-2 py-1 text-center">Hành động</th>
-                </tr>
-                </thead>
-                <tbody>
-                {urls.length > 0 ? (
-                    urls.map((url) => (
-                        <tr key={url.deviceId}>
-                            <td className="w-1/4 border border-gray-300 px-2 py-1 overflow-hidden text-ellipsis whitespace-nowrap text-blue-600 hover:underline">
-                                {url.name}
-                            </td>
-                            <td className="w-2/4 border border-gray-300 px-2 py-1 overflow-hidden text-ellipsis whitespace-nowrap text-blue-600 hover:underline">
-                                {url.url}
-                            </td>
-                            <td className="w-1/8 border border-gray-300 px-2 py-1 text-center">
-                                <label className="device-url-switch">
-                                    <input
-                                        type="checkbox"
-                                        checked={url.isActive}
-                                        onChange={() => handleToggleActive(url.deviceUrlId, url.isActive)}
-                                    />
-                                    <span className="slider round"></span>
-                                </label>
-                            </td>
-                            <td className="w-1/8 border border-gray-300 px-2 py-1 flex text-center space-x-2">
-                                <button
-                                    onClick={() => {
-                                        setEditUrl(url);
-                                        setUpdatedUrl(url.url);
-                                        setUpdatedIsActive(url.isActive);
-                                    }}
-                                    className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
-                                >
-                                    Sửa
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setUrlToDelete(url.deviceUrlId);
-                                        setShowConfirmModal(true);
-                                    }}
-                                    className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
-                                >
-                                    Xóa
-                                </button>
+            <div className="table-container overflow-x-auto">
+                <table className="table-fixed w-full border-collapse border border-gray-300"
+                       style={{width: "100%", marginTop: "20px"}}>
+                    <thead className="bg-gray-100">
+                    <tr>
+                        <th className="w-1/4 border border-gray-300 px-2 py-1 text-left">Tên</th>
+                        <th className="w-2/4 border border-gray-300 px-2 py-1 text-left">URL</th>
+                        <th className="w-1/8 border border-gray-300 px-2 py-1 text-center">Trạng thái</th>
+                        <th className="w-1/8 border border-gray-300 px-2 py-1 text-center">Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {urls.length > 0 ? (
+                        urls.map((url) => (
+                            <tr key={url.deviceId}>
+                                <td className="w-1/4 border border-gray-300 px-2 py-1 overflow-hidden text-ellipsis whitespace-nowrap text-blue-600 hover:underline">
+                                    {url.name}
+                                </td>
+                                <td className="w-2/4 border border-gray-300 px-2 py-1 overflow-hidden text-ellipsis whitespace-nowrap text-blue-600 hover:underline">
+                                    {url.url}
+                                </td>
+                                <td className="w-1/8 border border-gray-300 px-2 py-1 text-center">
+                                    <label className="device-url-switch">
+                                        <input
+                                            type="checkbox"
+                                            checked={url.isActive}
+                                            onChange={() => handleToggleActive(url.deviceUrlId, url.isActive)}
+                                        />
+                                        <span className="slider round"></span>
+                                    </label>
+                                </td>
+                                <td className="w-1/8 border border-gray-300 px-2 py-1 flex text-center space-x-2">
+                                    <button
+                                        onClick={() => {
+                                            setEditUrl(url);
+                                            setUpdatedUrl(url.url);
+                                            setUpdatedIsActive(url.isActive);
+                                        }}
+                                        className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+                                    >
+                                        Sửa
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setUrlToDelete(url.deviceUrlId);
+                                            setShowConfirmModal(true);
+                                        }}
+                                        className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700"
+                                    >
+                                        Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4" className="border border-gray-300 px-2 py-1 text-center">
+                                No URLs found for this device.
                             </td>
                         </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td colSpan="4" className="border border-gray-300 px-2 py-1 text-center">
-                            No URLs found for this device.
-                        </td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
+                    )}
+                    </tbody>
+                </table>
+            </div>
 
             <div className="pagination mt-4 flex justify-center space-x-4">
                 <button

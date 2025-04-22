@@ -1,3 +1,27 @@
+/* Home Page */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.section-card {
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 8px;
+    margin: 30px;
+    padding: 20px;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-card h2 {
+    color: #1d4ed8;
+}
+
 /* Ensure the layout takes up the full height of the viewport */
 .min-h-screen {
     display: flex;
@@ -563,6 +587,7 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 5px; /* Adds spacing between buttons */
+    margin-bottom: 5px; /* Adds spacing below buttons */
 }
 
 .device-url-page button.bg-blue-600 {
@@ -813,6 +838,11 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.history-page__table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
 .history-page__table {
     width: 100%;
     border-collapse: collapse;
@@ -846,3 +876,28 @@ footer {
 .history-page__empty {
     color: #6b7280;
 }
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.app-download-page {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-download {
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-download:hover {
+    background-color: #15803d;
+}
+

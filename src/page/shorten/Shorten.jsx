@@ -50,7 +50,7 @@ export function ShortenPage() {
                         role="tab"
                         onClick={() => setType("text")}
                     >
-                        Text
+                        Văn bản
                     </button>
                 </li>
             </ul>

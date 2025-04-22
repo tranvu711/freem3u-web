@@ -35,7 +35,7 @@ export function AuthPage() {
 
     const handleGoogleLogin = () => {
         const clientId = "297654297135-b2lm1fc8vp9coolkju4vtq0v6kkmgcb5.apps.googleusercontent.com";
-        const redirectUri = "http://localhost:3000/login";
+        const redirectUri = "https://freem3u.xyz/login";
         const scope = "email profile";
         const responseType = "code";
 
