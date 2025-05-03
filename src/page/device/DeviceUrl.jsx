@@ -135,7 +135,7 @@ export function DeviceUrlPage() {
     }, [deviceId, page, isLoggedIn]);
 
     return (
-        <div className="device-url-page">
+        <div className="device-url-page main-page">
             <AlertModal
                 isOpen={showLoginPopup}
                 title="Yêu cầu đăng nhập"
@@ -196,18 +196,19 @@ export function DeviceUrlPage() {
                             </div>
                             <div className="flex justify-end space-x-2">
                                 <button
+                                    type="submit"
+                                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                                >
+                                    Thêm mới
+                                </button>
+                                <button
                                     type="button"
                                     onClick={() => setShowModal(false)}
                                     className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400"
                                 >
                                     Đóng
                                 </button>
-                                <button
-                                    type="submit"
-                                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                                >
-                                    Thêm mới
-                                </button>
+
                             </div>
                         </form>
                     </div>
@@ -302,8 +303,8 @@ export function DeviceUrlPage() {
 
             {editUrl && (
                 <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="modal-content bg-white p-6 rounded shadow-lg" style={{width: "500px"}}>
-                        <h3 className="text-xl font-bold mb-4">Sửa URL</h3>
+                    <div className="modal-content text-black p-6 rounded shadow-lg rounded-2" style={{width: "500px"}}>
+                        <h3 className="shorten-title">Sửa URL</h3>
                         <form onSubmit={handleEditUrl}>
                             <div className="mb-4">
                                 <input
@@ -332,10 +333,16 @@ export function DeviceUrlPage() {
                                         checked={updatedIsActive}
                                         onChange={(e) => setUpdatedIsActive(e.target.checked)}
                                     />
-                                    <label htmlFor="active" className="ml-2">Active</label>
+                                    <label htmlFor="active" className="ml-2">Active (xem trên thiết bị liên kết)</label>
                                 </div>
                             </div>
                             <div className="flex justify-end space-x-2">
+                                <button
+                                    type="submit"
+                                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                                >
+                                    Lưu
+                                </button>
                                 <button
                                     type="button"
                                     onClick={() => setEditUrl(null)}
@@ -343,12 +350,7 @@ export function DeviceUrlPage() {
                                 >
                                     Đóng
                                 </button>
-                                <button
-                                    type="submit"
-                                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                                >
-                                    Lưu
-                                </button>
+
                             </div>
                         </form>
                     </div>

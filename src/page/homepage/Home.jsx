@@ -6,8 +6,7 @@ export function HomePage() {
         {
             id: "google-login",
             title: "✨ Vì sao chọn vAppTV?",
-            content: "Nhanh chóng và bảo mật, không cần tạo tài khoản mới. Chỉ một cú nhấp đăng nhập bằng Google là bạn có thể sử dụng ngay toàn bộ tính năng của vApp.",
-            path: "/auth"
+            content: "Nhanh chóng và bảo mật, không cần tạo tài khoản mới. Chỉ một cú nhấp đăng nhập bằng Google là bạn có thể sử dụng ngay toàn bộ tính năng của vAppTV.",
         },
         {
             id: "short-link",
@@ -45,7 +44,7 @@ export function HomePage() {
             <main className="max-w-7xl mx-auto px-6 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sections.map(({ id, title, content, path }) => (
-                        <div key={id} className="section-card bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div key={id} className="section-card rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
                             <h2 className="text-xl font-semibold text-blue-800 mb-4">{title}</h2>
                             <p className="text-gray-700 mb-6">{content}</p>
                             {path && (

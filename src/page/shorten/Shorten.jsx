@@ -17,7 +17,7 @@ export function ShortenPage() {
         try {
             const payload = {
                 type,
-                original_url: type === "url" ? input : undefined,
+                originalUrl: type === "url" ? input : undefined,
                 content: type === "text" ? input : undefined,
             };
             const result = await shorten(payload);
@@ -30,7 +30,7 @@ export function ShortenPage() {
     };
 
     return (
-        <div className="shorten-page">
+        <div className="shorten-page main-page">
             <h2 className="shorten-title">Rút gọn liên kết hoặc văn bản</h2>
             <ul className="nav nav-tabs" role="tablist">
                 <li className="nav-item" role="presentation">
@@ -83,7 +83,8 @@ export function ShortenPage() {
                         onChange={(e) => setInput(e.target.value)}
                     />
                     <p className="shorten-description">
-                        Nhập văn bản bạn muốn rút gọn vào ô bên dưới. Chúng tôi sẽ tạo một liên kết ngắn cho bạn. Dễ dàng chia sẻ và lưu trữ cũng như xem trên tivi
+                        Nhập văn bản bạn muốn rút gọn vào ô bên dưới. Chúng tôi sẽ tạo một liên kết ngắn cho bạn. Dễ
+                        dàng chia sẻ và lưu trữ cũng như xem trên tivi
                     </p>
                 </div>
             </div>
@@ -98,8 +99,13 @@ export function ShortenPage() {
 
             <SuccessModal
                 isOpen={showSuccessModal}
-                title="Success"
-                message={<p>Shortened successfully: <b>{short}</b></p>}
+                title="Thành công"
+                message={
+                    <>
+                        <p style={{ fontWeight: "bold", color: "green" }}>Đã tạo link rút gọn thành công. Link của bạn là</p>
+                        <input style={{ border: "1px solid #ccc", padding: "5px", borderRadius: "4px", width: "100%" }} value={short} readOnly />
+                    </>
+                }
                 onClose={() => setShowSuccessModal(false)}
             />
 

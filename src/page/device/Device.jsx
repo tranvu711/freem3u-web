@@ -85,7 +85,7 @@ export function DevicePage() {
     }, [page, isLoggedIn]);
 
     return (
-        <div className="device-page">
+        <div className="device-page main-page">
             <LoadingOverlay isLoading={loading}/>
             <AlertModal
                 isOpen={showLoginPopup}
@@ -127,7 +127,7 @@ export function DevicePage() {
                         <div className="w-1/2 flex justify-end space-x-2">
                             <button
                                 onClick={() => handleViewUrls(device.deviceId)}
-                                className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700"
+                                className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 mb-2"
                                 disabled={loading}
                             >
                                 Xem URLs

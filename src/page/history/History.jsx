@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 export function HistoryPage() {
     const {isLoggedIn} = useContext(AuthContext);
-    const [showLoginPopup, setShowLoginPopup] = useState(false); // State for login popup
+    const [showLoginPopup, setShowLoginPopup] = useState(false);
     const [shortenedUrls, setShortenedUrls] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -41,8 +41,12 @@ export function HistoryPage() {
         fetchShortenedUrls();
     }, [page, isLoggedIn]);
 
+    const handleEdit = (code) => {
+        navigate(`/shorten/edit/${code}`);
+    };
+
     return (
-        <div className="history-page">
+        <div className="history-page main-page">
             <h2 className="shorten-title">Lịch sử</h2>
             <LoadingOverlay loading={loading} />
             <AlertModal
@@ -59,7 +63,7 @@ export function HistoryPage() {
                         <th className="history-page__header border border-gray-300 px-4 py-2">Shortened URL</th>
                         <th className="history-page__header border border-gray-300 px-4 py-2">Type</th>
                         <th className="history-page__header border border-gray-300 px-4 py-2">Original Data</th>
-                        <th className="history-page__header border border-gray-300 px-4 py-2">Created At</th>
+                        <th className="history-page__header border border-gray-300 px-4 py-2">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,9 +83,16 @@ export function HistoryPage() {
                                 </td>
                                 <td className="history-page__cell border border-gray-300 px-4 py-2">{url.type}</td>
                                 <td className="history-page__cell border border-gray-300 px-4 py-2">
-                                    <textarea>{url.originalUrl || url.content}</textarea>
+                                    {url.originalUrl || url.content}
                                 </td>
-                                <td className="history-page__cell border border-gray-300 px-4 py-2">{url.createdAt}</td>
+                                <td className="history-page__cell border border-gray-300 px-4 py-2">
+                                    <button
+                                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                                        onClick={() => handleEdit(url.shortenedCode)}
+                                    >
+                                        Sửa
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     ) : (

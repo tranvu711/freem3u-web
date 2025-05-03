@@ -48,7 +48,7 @@ export function AuthPage() {
     }
 
     return (
-        <div className="container py-5 auth-page">
+        <div className="main-page auth-page">
             <h2 className="text-center mb-4 auth-title">Đăng nhập với Google</h2>
             <p className="text-center mb-4">
                 Sử dụng tài khoản Google để đăng nhập và truy cập các tính năng.

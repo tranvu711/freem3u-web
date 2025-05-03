@@ -1,6 +1,5 @@
 // src/utils/api.js
 const API_BASE_URL = "https://freem3u.xyz/api"; // Base URL for your API
-
 // Function to get the access token (e.g., from localStorage)
 function getAccessToken() {
     return localStorage.getItem("accessToken");
@@ -32,6 +31,12 @@ export async function apiRequest(endpoint, method = "GET", body = null) {
             throw new Error("Network response was not ok");
         }
         let responseData = await response.json();
+        if (responseData?.code === 401) {
+            // Handle token expiration or unauthorized access
+            localStorage.removeItem("accessToken");
+            window.location.href = "/login"; // Redirect to login page
+            return;
+        }
         if (responseData?.code < 200 || responseData?.code >= 300) {
             throw new Error(responseData?.message || "API request failed");
         }
